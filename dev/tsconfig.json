@@ -19,13 +19,13 @@
       "@payload-config": [
         "./payload.config.ts"
       ],
-      "advanced-sidebar-plugin": [
+      "payload-advanced-sidebar": [
         "../src/index.ts"
       ],
-      "advanced-sidebar-plugin/client": [
+      "payload-advanced-sidebar/client": [
         "../src/exports/client.ts"
       ],
-      "advanced-sidebar-plugin/rsc": [
+      "payload-advanced-sidebar/rsc": [
         "../src/exports/rsc.ts"
       ]
     },

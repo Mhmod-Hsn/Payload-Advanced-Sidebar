@@ -1,6 +1,6 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
-import { advancedSidebarPlugin } from 'advanced-sidebar-plugin'
+import { advancedSidebarPlugin } from 'payload-advanced-sidebar'
 import { MongoMemoryReplSet } from 'mongodb-memory-server'
 import path from 'path'
 import { buildConfig } from 'payload'
