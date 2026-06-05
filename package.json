@@ -11,16 +11,16 @@
     "customization",
     "admin"
   ],
-  "author": "Mahmoud Hassan",
-  "license": "MIT",
+  "homepage": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar#readme",
+  "bugs": {
+    "url": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar.git"
   },
-  "bugs": {
-    "url": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar/issues"
-  },
-  "homepage": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar#readme",
+  "license": "MIT",
+  "author": "Mahmoud Hassan",
   "type": "module",
   "exports": {
     ".": {
@@ -62,6 +62,9 @@
     "test:e2e": "playwright test",
     "test:int": "vitest"
   },
+  "dependencies": {
+    "lucide-react": "^1.17.0"
+  },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@payloadcms/db-mongodb": "3.84.1",
@@ -83,7 +86,6 @@
     "eslint": "^9.23.0",
     "eslint-config-next": "16.2.6",
     "graphql": "^16.8.1",
-    "lucide-react": "^1.17.0",
     "mongodb-memory-server": "10.1.4",
     "next": "16.2.6",
     "open": "^10.1.0",
@@ -93,7 +95,6 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "rimraf": "3.0.2",
-    "sass": "^1.100.0",
     "sharp": "0.34.2",
     "sort-package-json": "^2.10.0",
     "typescript": "5.7.3",

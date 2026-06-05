@@ -1,0 +1,78 @@
+:root {
+  --nav-text-color: var(--theme-text, #333);
+  --nav-hover-bg: var(--theme-elevation-50, rgba(128, 128, 128, 0.1));
+  --nav-active-bg: var(--theme-elevation-100, rgba(128, 128, 128, 0.2));
+  --nav-border-radius: 6px;
+}
+
+.nav__link {
+  display: flex;
+  border-radius: var(--nav-border-radius);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  text-decoration: none;
+  color: var(--nav-text-color);
+}
+
+.nav__link:focus:not(:focus-visible) {
+  box-shadow: none;
+  font-weight: 600;
+}
+
+.nav__link:hover {
+  background-color: var(--nav-hover-bg);
+  text-decoration: none;
+}
+
+.nav__link.active {
+  font-weight: 600;
+  background-color: var(--nav-active-bg);
+}
+
+.nav .menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav .menu li {
+  margin-bottom: 5px;
+}
+
+.nav .menu li a {
+  display: block;
+  padding: 5px 7px;
+  font-size: 14px;
+}
+
+.nav .menu li.group .sub-menu {
+  padding-left: 15px;
+  list-style: none;
+}
+
+.nav .menu li.group .sub-menu li a {
+  font-size: 13px;
+  padding: 8px;
+}
+
+.nav .menu li.group .group-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 7px;
+}
+
+.nav .menu li.group .group-toggle .group-chevron {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  opacity: 0.5;
+}
+
+.nav .menu li.group .sub-group-list {
+  margin-left: 12px;
+  margin-top: 5px;
+}
+
+.nav .menu li.group.open .sub-menu {
+  display: block;
+}
