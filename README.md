@@ -15,11 +15,11 @@ A Payload CMS 3.0 plugin that gives you complete control over your admin sidebar
 ## Installation
 
 ```bash
-npm install payload-plugin-advanced-sidebar
+npm install payload-advanced-sidebar
 # or
-yarn add payload-plugin-advanced-sidebar
+yarn add payload-advanced-sidebar
 # or
-pnpm add payload-plugin-advanced-sidebar
+pnpm add payload-advanced-sidebar
 ```
 
 ## Usage
@@ -27,9 +27,9 @@ pnpm add payload-plugin-advanced-sidebar
 Add the plugin to your Payload configuration:
 
 ```typescript
-import { buildConfig } from 'payload/config';
-import { advancedSidebarPlugin } from 'payload-plugin-advanced-sidebar';
-import { Settings, Users } from 'lucide-react';
+import { buildConfig } from 'payload/config'
+import { advancedSidebarPlugin } from 'payload-advanced-sidebar'
+import { Settings, Users } from 'lucide-react'
 
 export default buildConfig({
   // ... rest of your config
@@ -50,8 +50,8 @@ export default buildConfig({
               type: 'collection',
               slug: 'pages',
               icon: Settings,
-            }
-          ]
+            },
+          ],
         },
         {
           type: 'group',
@@ -61,29 +61,29 @@ export default buildConfig({
               type: 'collection',
               slug: 'users',
               icon: Users,
-            }
-          ]
-        }
+            },
+          ],
+        },
       ],
       // Optional: Globally hide specific collections/globals
       hideSettings: {
         collections: ['hidden-collection'],
-        globals: ['hidden-global']
-      }
+        globals: ['hidden-global'],
+      },
     }),
   ],
-});
+})
 ```
 
 ![Configuration Example](https://via.placeholder.com/800x400.png?text=Add+Configuration+Screenshot+Here)
 
 ## Plugin Options
 
-| Option | Type | Description |
-|--------|------|-------------|
-| `navItems` | `NavItem[]` | Array of custom navigation groups and items to render in the sidebar. |
+| Option         | Type                                             | Description                                                                 |
+| -------------- | ------------------------------------------------ | --------------------------------------------------------------------------- |
+| `navItems`     | `NavItem[]`                                      | Array of custom navigation groups and items to render in the sidebar.       |
 | `hideSettings` | `{ collections?: string[], globals?: string[] }` | Optional settings to hide specific collections or globals from the sidebar. |
-| `disabled` | `boolean` | Set to `true` to disable the plugin entirely. |
+| `disabled`     | `boolean`                                        | Set to `true` to disable the plugin entirely.                               |
 
 ## Development
 

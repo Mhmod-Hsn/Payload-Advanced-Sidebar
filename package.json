@@ -1,5 +1,5 @@
 {
-  "name": "payload-plugin-advanced-sidebar",
+  "name": "payload-advanced-sidebar",
   "version": "1.0.0",
   "description": "A Payload CMS 3.0 plugin to customize the admin sidebar with grouping, custom icons, and hide functionality.",
   "keywords": [
@@ -11,16 +11,16 @@
     "customization",
     "admin"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Mahmoud Hassan",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/payload-plugin-advanced-sidebar.git"
+    "url": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/payload-plugin-advanced-sidebar/issues"
+    "url": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar/issues"
   },
-  "homepage": "https://github.com/your-username/payload-plugin-advanced-sidebar#readme",
+  "homepage": "https://github.com/Mhmod-Hsn/payload-advanced-sidebar#readme",
   "type": "module",
   "exports": {
     ".": {
