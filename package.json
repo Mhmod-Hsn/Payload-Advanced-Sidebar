@@ -1,6 +1,6 @@
 {
   "name": "payload-advanced-sidebar",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "A Payload CMS 3.0 plugin to customize the admin sidebar with grouping, custom icons, and hide functionality.",
   "keywords": [
     "payload",
