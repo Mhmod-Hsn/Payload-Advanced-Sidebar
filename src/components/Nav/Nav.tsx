@@ -12,12 +12,14 @@ import { NavWrapper } from './NavWrapper.js'
 const baseClass = 'nav'
 
 type NavProps = {
+  animations?: boolean
   groupsConfig?: Record<string, { icon?: string }>
   itemsConfig?: Record<string, { icon?: string }>
 } & ServerProps
 
 const Nav = (props: NavProps) => {
   const {
+    animations,
     documentSubViewType,
     groupsConfig,
     i18n,
@@ -101,7 +103,12 @@ const Nav = (props: NavProps) => {
           user,
         },
       })}
-      <NavClient groups={groups} groupsConfig={groupsConfig} itemsConfig={itemsConfig} />
+      <NavClient
+        animations={animations}
+        groups={groups}
+        groupsConfig={groupsConfig}
+        itemsConfig={itemsConfig}
+      />
       {RenderServerComponent({
         clientProps: {
           documentSubViewType,

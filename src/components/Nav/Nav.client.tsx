@@ -14,6 +14,7 @@ import { getNavIcon } from './get-nav-icon.js'
 import { getActiveGroup, getSortedGroups } from './nav-utils.js'
 
 type NavProps = {
+  animations?: boolean
   groups: NavGroupType[]
   groupsConfig?: Record<string, { icon?: string }>
   itemsConfig?: Record<string, { icon?: string }>
@@ -21,7 +22,7 @@ type NavProps = {
 
 const baseClass = 'nav'
 
-export const NavClient = ({ groups, groupsConfig, itemsConfig }: NavProps) => {
+export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig }: NavProps) => {
   const pathname = usePathname()
   const {
     config: {
@@ -65,49 +66,67 @@ export const NavClient = ({ groups, groupsConfig, itemsConfig }: NavProps) => {
         const groupSlug = groupLabel.toLowerCase()
         const Icon = getNavIcon(groupSlug, groupsConfig)
         const isOpen = openGroups.includes(groupLabel)
+        const ChevronIcon = !animations && isOpen ? ChevronDown : ChevronRight
 
         return (
           <li className="group" key={key}>
             <div
               className={`${baseClass}__link group-toggle`}
               onClick={() => toggleGroup(groupLabel)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault()
+                  toggleGroup(groupLabel)
+                }
+              }}
+              role="button"
               style={{ cursor: 'pointer' }}
+              tabIndex={0}
             >
               {Icon && <Icon size={16} />}
               {getTranslation(groupLabel, i18n)}
               <div className="group-chevron">
-                {isOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+                <ChevronIcon
+                  className={animations ? `chevron animated ${isOpen ? 'open' : ''}` : undefined}
+                  size={16}
+                />
               </div>
             </div>
-            {isOpen &&
-              entities.map(({ slug, type, label }: any) => {
-                let href: null | string = null
-                if (type === EntityType.collection) {
-                  href = formatAdminURL({
-                    adminRoute,
-                    path: `/collections/${slug}`,
-                  })
-                } else if (type === EntityType.global) {
-                  href = formatAdminURL({
-                    adminRoute,
-                    path: `/globals/${slug}`,
-                  })
-                }
-                const ItemIcon = getNavIcon(slug, itemsConfig)
+            <div
+              className={`sub-group-wrapper ${isOpen ? 'open' : ''} ${animations ? 'animated' : ''}`}
+            >
+              <div className="sub-group-inner">
+                {entities.map(({ slug, type, label }: any) => {
+                  let href: null | string = null
+                  if (type === EntityType.collection) {
+                    href = formatAdminURL({
+                      adminRoute,
+                      path: `/collections/${slug}`,
+                    })
+                  } else if (type === EntityType.global) {
+                    href = formatAdminURL({
+                      adminRoute,
+                      path: `/globals/${slug}`,
+                    })
+                  }
+                  const ItemIcon = getNavIcon(slug, itemsConfig)
 
-                return (
-                  <Link
-                    className={`${baseClass}__link sub-group-list ${pathname === href ? 'active' : ''}`}
-                    href={href || ''}
-                    key={slug}
-                  >
-                    <div style={{ alignItems: 'center', display: 'flex', gap: '6px' }}>
-                      {ItemIcon && <ItemIcon size={14} />}
-                      {getTranslation(label, i18n)}
-                    </div>
-                  </Link>
-                )
-              })}
+                  return (
+                    <Link
+                      className={`${baseClass}__link sub-group-list ${pathname === href ? 'active' : ''}`}
+                      href={href || ''}
+                      key={slug}
+                      tabIndex={isOpen ? 0 : -1}
+                    >
+                      <div style={{ alignItems: 'center', display: 'flex', gap: '6px' }}>
+                        {ItemIcon && <ItemIcon size={14} />}
+                        {getTranslation(label, i18n)}
+                      </div>
+                    </Link>
+                  )
+                })}
+              </div>
+            </div>
           </li>
         )
       })}

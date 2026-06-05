@@ -76,3 +76,40 @@
 .nav .menu li.group.open .sub-menu {
   display: block;
 }
+
+.sub-group-wrapper {
+  display: grid;
+  grid-template-rows: 0fr;
+}
+
+.sub-group-wrapper.animated {
+  transition: grid-template-rows 0.3s ease-in-out;
+}
+
+.sub-group-wrapper.open {
+  grid-template-rows: 1fr;
+}
+
+.sub-group-inner {
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.sub-group-wrapper.animated .sub-group-inner {
+  transition: visibility 0.3s ease-in-out;
+}
+
+.sub-group-wrapper.open .sub-group-inner {
+  visibility: visible;
+}
+
+/* Also animate chevron */
+.group-chevron .chevron {
+  transition: transform 0.15s ease-in-out;
+}
+.group-chevron .chevron.open {
+  transform: rotate(90deg);
+}
+.group-chevron .chevron:not(.animated) {
+  transition: none;
+}

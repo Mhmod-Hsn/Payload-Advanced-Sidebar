@@ -75,6 +75,7 @@ export default buildConfig({
 | Option | Type | Default | Description |
 | :--- | :--- | :--- | :--- |
 | `enabled` | `boolean` | `true` | Set to `false` to easily disable the plugin entirely. |
+| `animations` | `boolean` | `true` | Set to `false` to disable smooth expanding/collapsing animations for sidebar groups. |
 | `groups` | `Record<string, { icon?: string }>` | `{}` | Map your group names (e.g., `'E-commerce'`) to specific Lucide React icon names. |
 | `items` | `Record<string, { icon?: string }>` | `{}` | Map your collection/global slugs (e.g., `'posts'`) to specific Lucide React icon names. |
 
