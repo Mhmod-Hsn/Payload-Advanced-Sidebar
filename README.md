@@ -1,16 +1,15 @@
-# Payload Plugin Advanced Sidebar
+# Payload Advanced Sidebar
 
-A Payload CMS 3.0 plugin that gives you complete control over your admin sidebar navigation. Organize collections and globals into custom groups, add custom icons, and hide specific items with ease.
+A Payload CMS 3.0 plugin that enhances your admin sidebar navigation. It allows you to assign custom icons to your collection/global groups as well as individual items, making your admin interface much more visually appealing and organized.
 
 ![Sidebar Preview](./images/sidebar-preview.png)
 
 ## Features
 
-- 📁 **Custom Groups**: Organize your collections and globals into logical groups.
-- 🎨 **Custom Icons**: Add Lucide React icons or your own custom icons to your navigation items.
-- 👻 **Hide Items**: Easily hide specific collections or globals from the sidebar.
-- 🔗 **External Links**: Add custom external links to your sidebar (if applicable).
-- ⚙️ **Simple Configuration**: Easy to set up and configure directly from your Payload config.
+- 📁 **Group Icons**: Assign custom icons to the sidebar groups you've defined in your Payload config.
+- 🎨 **Item Icons**: Assign custom icons to individual collections and globals.
+- ⚡️ **Lucide React Integration**: Uses [Lucide React](https://lucide.dev/) icons by default. Just pass the exact string name of the icon (e.g., `'ShoppingCart'`).
+- ⚙️ **Simple Configuration**: Seamlessly integrates with your existing Payload config without needing to rewrite your navigation structure.
 
 ## Installation
 
@@ -24,66 +23,60 @@ pnpm add payload-advanced-sidebar
 
 ## Usage
 
-Add the plugin to your Payload configuration:
+This plugin relies on the standard `admin.group` property you define on your collections and globals in Payload. You simply map those group names or item slugs to an icon!
+
+Add the plugin to your `payload.config.ts`:
 
 ```typescript
 import { buildConfig } from 'payload/config'
 import { advancedSidebarPlugin } from 'payload-advanced-sidebar'
-import { Settings, Users } from 'lucide-react'
 
 export default buildConfig({
-  // ... rest of your config
+  collections: [
+    {
+      slug: 'posts',
+      admin: { group: 'Content' }, // The group name used below
+      fields: [],
+    },
+    {
+      slug: 'customers',
+      admin: { group: 'E-commerce' }, // The group name used below
+      fields: [],
+    }
+  ],
   plugins: [
     advancedSidebarPlugin({
-      navItems: [
-        {
-          type: 'group',
-          label: 'Content Management',
-          icon: Settings, // Optional group icon
-          items: [
-            {
-              type: 'collection',
-              slug: 'posts',
-              icon: Settings, // Optional item icon
-            },
-            {
-              type: 'collection',
-              slug: 'pages',
-              icon: Settings,
-            },
-          ],
+      enabled: true, // Optional: defaults to true
+      // 1. Configure icons for your navigation groups
+      groups: {
+        'E-commerce': {
+          icon: 'ShoppingCart', // String matching a Lucide React icon
         },
-        {
-          type: 'group',
-          label: 'Administration',
-          items: [
-            {
-              type: 'collection',
-              slug: 'users',
-              icon: Users,
-            },
-          ],
+        'Content': {
+          icon: 'LayoutDashboard',
         },
-      ],
-      // Optional: Globally hide specific collections/globals
-      hideSettings: {
-        collections: ['hidden-collection'],
-        globals: ['hidden-global'],
+      },
+      // 2. Configure icons for specific items (by slug)
+      items: {
+        'posts': {
+          icon: 'Book',
+        },
+        'customers': {
+          icon: 'Users',
+        },
       },
     }),
   ],
 })
 ```
 
-![Configuration Example](https://via.placeholder.com/800x400.png?text=Add+Configuration+Screenshot+Here)
-
 ## Plugin Options
 
-| Option         | Type                                             | Description                                                                 |
-| -------------- | ------------------------------------------------ | --------------------------------------------------------------------------- |
-| `navItems`     | `NavItem[]`                                      | Array of custom navigation groups and items to render in the sidebar.       |
-| `hideSettings` | `{ collections?: string[], globals?: string[] }` | Optional settings to hide specific collections or globals from the sidebar. |
-| `disabled`     | `boolean`                                        | Set to `true` to disable the plugin entirely.                               |
+| Option | Type | Default | Description |
+| :--- | :--- | :--- | :--- |
+| `enabled` | `boolean` | `true` | Set to `false` to easily disable the plugin entirely. |
+| `groups` | `Record<string, { icon?: string }>` | `{}` | Map your group names (e.g., `'E-commerce'`) to specific Lucide React icon names. |
+| `items` | `Record<string, { icon?: string }>` | `{}` | Map your collection/global slugs (e.g., `'posts'`) to specific Lucide React icon names. |
 
 ## Development
 
