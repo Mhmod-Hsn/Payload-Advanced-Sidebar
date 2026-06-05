@@ -1,8 +1,26 @@
 {
-  "name": "advanced-sidebar-plugin",
+  "name": "payload-plugin-advanced-sidebar",
   "version": "1.0.0",
-  "description": "A blank template to get started with Payload 3.0",
+  "description": "A Payload CMS 3.0 plugin to customize the admin sidebar with grouping, custom icons, and hide functionality.",
+  "keywords": [
+    "payload",
+    "payloadcms",
+    "plugin",
+    "sidebar",
+    "navigation",
+    "customization",
+    "admin"
+  ],
+  "author": "Your Name <your.email@example.com>",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/payload-plugin-advanced-sidebar.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/payload-plugin-advanced-sidebar/issues"
+  },
+  "homepage": "https://github.com/your-username/payload-plugin-advanced-sidebar#readme",
   "type": "module",
   "exports": {
     ".": {
@@ -52,6 +70,7 @@
     "@payloadcms/eslint-config": "3.28.0",
     "@payloadcms/next": "3.84.1",
     "@payloadcms/richtext-lexical": "3.84.1",
+    "@payloadcms/translations": "^3.85.0",
     "@payloadcms/ui": "3.84.1",
     "@playwright/test": "1.58.2",
     "@swc-node/register": "1.10.9",
@@ -64,6 +83,7 @@
     "eslint": "^9.23.0",
     "eslint-config-next": "16.2.6",
     "graphql": "^16.8.1",
+    "lucide-react": "^1.17.0",
     "mongodb-memory-server": "10.1.4",
     "next": "16.2.6",
     "open": "^10.1.0",
@@ -73,6 +93,7 @@
     "react": "19.2.6",
     "react-dom": "19.2.6",
     "rimraf": "3.0.2",
+    "sass": "^1.100.0",
     "sharp": "0.34.2",
     "sort-package-json": "^2.10.0",
     "typescript": "5.7.3",
@@ -114,6 +135,5 @@
       "unrs-resolver"
     ]
   },
-  "registry": "https://registry.npmjs.org/",
-  "dependencies": {}
+  "registry": "https://registry.npmjs.org/"
 }

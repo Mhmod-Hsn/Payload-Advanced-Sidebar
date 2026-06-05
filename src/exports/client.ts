@@ -1,1 +1,1 @@
-export { BeforeDashboardClient } from '../components/BeforeDashboardClient.js'
+export { NavClient } from '../components/Nav/Nav.client.js'

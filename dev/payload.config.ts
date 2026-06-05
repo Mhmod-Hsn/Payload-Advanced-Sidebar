@@ -1,9 +1,9 @@
 import { mongooseAdapter } from '@payloadcms/db-mongodb'
 import { lexicalEditor } from '@payloadcms/richtext-lexical'
+import { advancedSidebarPlugin } from 'advanced-sidebar-plugin'
 import { MongoMemoryReplSet } from 'mongodb-memory-server'
 import path from 'path'
 import { buildConfig } from 'payload'
-import { advancedSidebarPlugin } from 'advanced-sidebar-plugin'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
@@ -38,14 +38,39 @@ const buildConfigWithMemoryDB = async () => {
     collections: [
       {
         slug: 'posts',
-        fields: [],
+        admin: { group: 'Content' },
+        fields: [{ name: 'title', type: 'text' }],
       },
       {
         slug: 'media',
+        admin: { group: 'Content' },
         fields: [],
         upload: {
           staticDir: path.resolve(dirname, 'media'),
         },
+      },
+      {
+        slug: 'analytics',
+        admin: { group: 'Analytics' },
+        fields: [
+          { name: 'metric', type: 'text' },
+          { name: 'value', type: 'number' },
+        ],
+      },
+      {
+        slug: 'customers',
+        admin: { group: 'E-commerce' },
+        fields: [{ name: 'name', type: 'text' }],
+      },
+      {
+        slug: 'orders',
+        admin: { group: 'E-commerce' },
+        fields: [{ name: 'total', type: 'number' }],
+      },
+      {
+        slug: 'custom-data',
+        admin: { group: 'My Group' },
+        fields: [{ name: 'info', type: 'text' }],
       },
     ],
     db: mongooseAdapter({
@@ -59,8 +84,33 @@ const buildConfigWithMemoryDB = async () => {
     },
     plugins: [
       advancedSidebarPlugin({
-        collections: {
-          posts: true,
+        groups: {
+          collections: {
+            icon: 'LayoutDashboard',
+          },
+          'e-commerce': {
+            icon: 'ShoppingCart',
+          },
+        },
+        items: {
+          analytics: {
+            icon: 'BarChart3',
+          },
+          'custom-data': {
+            icon: 'Code',
+          },
+          customers: {
+            icon: 'Users',
+          },
+          media: {
+            icon: 'FileImage',
+          },
+          orders: {
+            icon: 'Package',
+          },
+          posts: {
+            icon: 'Book',
+          },
         },
       }),
     ],
