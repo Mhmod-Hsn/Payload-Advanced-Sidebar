@@ -22,6 +22,8 @@ type NavProps = {
 
 const baseClass = 'nav'
 
+let persistedOpenGroups: string[] = []
+
 export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig }: NavProps) => {
   const pathname = usePathname()
   const {
@@ -34,7 +36,22 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
   const activeGroupSlug = getActiveGroup(pathname, adminRoute)
   const sortedGroups = getSortedGroups(groups)
 
-  const [openGroups, setOpenGroups] = useState<string[]>([])
+  const [openGroups, setOpenGroups] = useState<string[]>(() => {
+    const initialGroups = [...persistedOpenGroups]
+    const activeNavGroup = sortedGroups.find((g) =>
+      g.entities.some((e) => e.slug === activeGroupSlug),
+    )
+
+    if (activeNavGroup && !initialGroups.includes(activeNavGroup.label)) {
+      initialGroups.push(activeNavGroup.label)
+    }
+
+    return initialGroups
+  })
+
+  useEffect(() => {
+    persistedOpenGroups = openGroups
+  }, [openGroups])
 
   useEffect(() => {
     const activeNavGroup = sortedGroups.find((g) =>
@@ -43,7 +60,7 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
     if (activeNavGroup && !openGroups.includes(activeNavGroup.label)) {
       setOpenGroups((prev) => [...prev, activeNavGroup.label])
     }
-  }, [activeGroupSlug, sortedGroups])
+  }, [activeGroupSlug, sortedGroups, openGroups])
 
   const toggleGroup = (label: string) => {
     setOpenGroups((prev) =>
