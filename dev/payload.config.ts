@@ -128,6 +128,19 @@ const buildConfigWithMemoryDB = async () => {
             icon: 'Book',
           },
         },
+        navLinks: [
+          {
+            icon: 'Activity',
+            label: 'Custom Dashboard',
+            path: '/custom-dashboard',
+          },
+          {
+            group: 'External',
+            icon: 'ExternalLink',
+            label: 'External Link',
+            path: 'https://payloadcms.com',
+          },
+        ],
       }),
     ],
     secret: process.env.PAYLOAD_SECRET || 'test-secret_key',

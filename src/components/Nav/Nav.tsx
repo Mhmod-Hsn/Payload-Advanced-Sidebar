@@ -11,10 +11,13 @@ import { NavWrapper } from './NavWrapper'
 
 const baseClass = 'nav'
 
+import type { CustomNavLink } from '../../index'
+
 type NavProps = {
   animations?: boolean
   groupsConfig?: Record<string, { icon?: string }>
   itemsConfig?: Record<string, { icon?: string }>
+  navLinks?: CustomNavLink[]
 } & ServerProps
 
 const Nav = (props: NavProps) => {
@@ -25,6 +28,7 @@ const Nav = (props: NavProps) => {
     i18n,
     itemsConfig,
     locale,
+    navLinks,
     params,
     payload,
     permissions,
@@ -84,6 +88,36 @@ const Nav = (props: NavProps) => {
     i18n,
   )
 
+  const mergedItemsConfig = { ...(itemsConfig || {}) }
+
+  if (navLinks && navLinks.length > 0) {
+    navLinks.forEach((link) => {
+      const groupLabel = link.group || ''
+      let targetGroup = groups.find((g) => g.label === groupLabel)
+
+      if (!targetGroup) {
+        targetGroup = {
+          entities: [],
+          label: groupLabel,
+        }
+        groups.push(targetGroup)
+      }
+
+      const linkSlug = link.slug || link.path
+
+      targetGroup.entities.push({
+        slug: linkSlug,
+        type: 'custom' as any,
+        label: link.label,
+        path: link.path,
+      } as any)
+
+      if (link.icon) {
+        mergedItemsConfig[linkSlug] = { icon: link.icon }
+      }
+    })
+  }
+
   return (
     <NavWrapper baseClass={baseClass}>
       {RenderServerComponent({
@@ -107,7 +141,7 @@ const Nav = (props: NavProps) => {
         animations={animations}
         groups={groups}
         groupsConfig={groupsConfig}
-        itemsConfig={itemsConfig}
+        itemsConfig={mergedItemsConfig}
       />
       {RenderServerComponent({
         clientProps: {

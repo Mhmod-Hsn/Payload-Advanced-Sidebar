@@ -7,6 +7,7 @@ A Payload CMS 3.0 plugin that enhances your admin sidebar navigation. It allows 
 ## Features
 
 - 📁 **Group Icons**: Assign custom icons to the sidebar groups you've defined in your Payload config.
+- 🔗 **Custom Nav Links**: Add fully custom items and custom groups that point to external sites or custom Payload views.
 - 🎨 **Item Icons**: Assign custom icons to individual collections and globals.
 - ⚡️ **Lucide React Integration**: Uses [Lucide React](https://lucide.dev/) icons by default. Just pass the exact string name of the icon (e.g., `'ShoppingCart'`).
 - ⚙️ **Simple Configuration**: Seamlessly integrates with your existing Payload config without needing to rewrite your navigation structure.
@@ -65,6 +66,21 @@ export default buildConfig({
           icon: 'Users',
         },
       },
+      // 3. Add custom navigation links or groups
+      navLinks: [
+        {
+          label: 'Custom Dashboard',
+          path: '/custom-dashboard', // relative to adminRoute
+          icon: 'Activity',
+          group: 'Analytics', // Creates a new 'Analytics' group
+        },
+        {
+          label: 'External Link',
+          path: 'https://payloadcms.com',
+          icon: 'ExternalLink',
+          group: 'E-commerce', // Adds to existing 'E-commerce' group
+        },
+      ],
     }),
   ],
 })
@@ -78,6 +94,7 @@ export default buildConfig({
 | `animations` | `boolean` | `true` | Set to `false` to disable smooth expanding/collapsing animations for sidebar groups. |
 | `groups` | `Record<string, { icon?: string }>` | `{}` | Map your group names (e.g., `'E-commerce'`) to specific Lucide React icon names. |
 | `items` | `Record<string, { icon?: string }>` | `{}` | Map your collection/global slugs (e.g., `'posts'`) to specific Lucide React icon names. |
+| `navLinks` | `CustomNavLink[]` | `[]` | Array of custom navigation links, allowing you to add external URLs or internal custom routes to existing or new groups. |
 
 ## Development
 
