@@ -7,7 +7,7 @@ import { advancedSidebarPlugin } from 'payload-advanced-sidebar'
 import sharp from 'sharp'
 import { fileURLToPath } from 'url'
 
-import { devUser } from "./helpers/credentials";
+import { devUser } from './helpers/credentials'
 import { testEmailAdapter } from './helpers/testEmailAdapter'
 import { seed } from './seed'
 
@@ -43,7 +43,7 @@ const buildConfigWithMemoryDB = async () => {
       },
       importMap: {
         baseDir: path.resolve(dirname),
-      }
+      },
     },
     collections: [
       {
@@ -95,8 +95,14 @@ const buildConfigWithMemoryDB = async () => {
     plugins: [
       advancedSidebarPlugin({
         groups: {
-          Content: {
+          Analytics: {
+            icon: 'BarChart3',
+          },
+          Collections: {
             icon: 'LayoutDashboard',
+          },
+          Content: {
+            icon: 'Files',
           },
           'E-commerce': {
             icon: 'ShoppingCart',
