@@ -7,8 +7,8 @@ describe('getNavIcon', () => {
     expect(getNavIcon('E-Mails', { 'E-Mails': { icon: 'Timer' } })).toBeDefined()
   })
 
-  test('keeps backwards compatibility with lower-case group keys', () => {
-    expect(getNavIcon('E-commerce', { 'e-commerce': { icon: 'ShoppingCart' } })).toBeDefined()
+  test('does not resolve lower-case variants for mixed-case group labels', () => {
+    expect(getNavIcon('E-commerce', { 'e-commerce': { icon: 'ShoppingCart' } })).toBeUndefined()
   })
 
   test('resolves item slugs without changing them', () => {
