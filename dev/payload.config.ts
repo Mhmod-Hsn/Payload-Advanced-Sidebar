@@ -85,10 +85,10 @@ const buildConfigWithMemoryDB = async () => {
     plugins: [
       advancedSidebarPlugin({
         groups: {
-          collections: {
+          Content: {
             icon: 'LayoutDashboard',
           },
-          'e-commerce': {
+          'E-commerce': {
             icon: 'ShoppingCart',
           },
         },

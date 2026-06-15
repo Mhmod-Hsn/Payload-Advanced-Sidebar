@@ -80,8 +80,7 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
         </Link>
       </li>
       {sortedGroups.map(({ entities, label: groupLabel }: NavGroupType, key: number) => {
-        const groupSlug = groupLabel.toLowerCase()
-        const Icon = getNavIcon(groupSlug, groupsConfig)
+        const Icon = getNavIcon(groupLabel, groupsConfig)
         const isOpen = openGroups.includes(groupLabel)
         const ChevronIcon = !animations && isOpen ? ChevronDown : ChevronRight
 
