@@ -1,9 +1,11 @@
 import type { ServerProps } from "payload";
 
-import Nav from "./Nav.js";
+import Nav from "./Nav";
 
 export type NavWithGroupsProps = {
-    groupsConfig?: Record<string, { icon: string; name: string }>;
+    animations?: boolean;
+    groupsConfig?: Record<string, { icon?: string }>;
+    itemsConfig?: Record<string, { icon?: string }>;
 } & ServerProps;
 
 export const NavWithGroups = (props: NavWithGroupsProps) => {

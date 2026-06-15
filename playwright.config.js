@@ -39,7 +39,7 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'pnpm dev',
+    command: 'cross-env PAYLOAD_MEMORY_DB=1 corepack pnpm dev',
     reuseExistingServer: true,
     url: 'http://localhost:3000/admin',
   },

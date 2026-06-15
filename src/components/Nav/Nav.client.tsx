@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react'
 // @ts-ignore
 import { usePathname } from 'next/navigation'
 
-import { getNavIcon } from './get-nav-icon.js'
-import { getActiveGroup, getSortedGroups } from './nav-utils.js'
+import { getNavIcon } from './get-nav-icon'
+import { getActiveGroup, getSortedGroups } from './nav-utils'
 
 type NavProps = {
   animations?: boolean
@@ -80,8 +80,7 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
         </Link>
       </li>
       {sortedGroups.map(({ entities, label: groupLabel }: NavGroupType, key: number) => {
-        const groupSlug = groupLabel.toLowerCase()
-        const Icon = getNavIcon(groupSlug, groupsConfig)
+        const Icon = getNavIcon(groupLabel, groupsConfig)
         const isOpen = openGroups.includes(groupLabel)
         const ChevronIcon = !animations && isOpen ? ChevronDown : ChevronRight
 

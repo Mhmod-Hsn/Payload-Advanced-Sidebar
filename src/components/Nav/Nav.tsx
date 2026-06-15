@@ -5,9 +5,9 @@ import { Logout } from '@payloadcms/ui'
 import { RenderServerComponent } from '@payloadcms/ui/elements/RenderServerComponent'
 import { EntityType, groupNavItems } from '@payloadcms/ui/shared'
 
-import { NavClient } from './Nav.client.js'
+import { NavClient } from './Nav.client'
 import './Nav.css'
-import { NavWrapper } from './NavWrapper.js'
+import { NavWrapper } from './NavWrapper'
 
 const baseClass = 'nav'
 

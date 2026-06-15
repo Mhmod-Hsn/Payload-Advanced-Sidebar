@@ -1,1 +1,1 @@
-export { NavClient } from '../components/Nav/Nav.client.js'
+export { NavClient } from '../components/Nav/Nav.client'
