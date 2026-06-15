@@ -10,8 +10,8 @@ import { useEffect, useState } from 'react'
 // @ts-ignore
 import { usePathname } from 'next/navigation'
 
-import { getNavIcon } from './get-nav-icon.js'
-import { getActiveGroup, getSortedGroups } from './nav-utils.js'
+import { getNavIcon } from './get-nav-icon'
+import { getActiveGroup, getSortedGroups } from './nav-utils'
 
 type NavProps = {
   animations?: boolean
