@@ -6,9 +6,8 @@ import { getTranslation } from '@payloadcms/translations'
 import { Link, useConfig, useTranslation } from '@payloadcms/ui'
 import { EntityType, formatAdminURL } from '@payloadcms/ui/shared'
 import { ChevronDown, ChevronRight, Home } from 'lucide-react'
-import { useEffect, useState } from 'react'
-// @ts-ignore
 import { usePathname } from 'next/navigation'
+import React, { useEffect, useState } from 'react'
 
 import { getNavIcon } from './get-nav-icon'
 import { getActiveGroup, getSortedGroups } from './nav-utils'
@@ -80,6 +79,39 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
         </Link>
       </li>
       {sortedGroups.map(({ entities, label: groupLabel }: NavGroupType, key: number) => {
+        if (!groupLabel) {
+          return (
+            <React.Fragment key={key}>
+              {entities.map(({ slug, type, label, path }: any) => {
+                let href: null | string = null
+                if (type === EntityType.collection) {
+                  href = formatAdminURL({ adminRoute, path: `/collections/${slug}` })
+                } else if (type === EntityType.global) {
+                  href = formatAdminURL({ adminRoute, path: `/globals/${slug}` })
+                } else if (type === 'custom') {
+                  href =
+                    path.startsWith('/') && !path.startsWith(adminRoute)
+                      ? `${adminRoute}${path}`
+                      : path
+                }
+                const ItemIcon = getNavIcon(slug, itemsConfig)
+
+                return (
+                  <li className="group" key={slug}>
+                    <Link
+                      className={`${baseClass}__link group-toggle ${pathname === href ? 'active' : ''}`}
+                      href={href || ''}
+                    >
+                      {ItemIcon && <ItemIcon size={16} />}
+                      {getTranslation(label, i18n)}
+                    </Link>
+                  </li>
+                )
+              })}
+            </React.Fragment>
+          )
+        }
+
         const Icon = getNavIcon(groupLabel, groupsConfig)
         const isOpen = openGroups.includes(groupLabel)
         const ChevronIcon = !animations && isOpen ? ChevronDown : ChevronRight
@@ -112,7 +144,7 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
               className={`sub-group-wrapper ${isOpen ? 'open' : ''} ${animations ? 'animated' : ''}`}
             >
               <div className="sub-group-inner">
-                {entities.map(({ slug, type, label }: any) => {
+                {entities.map(({ slug, type, label, path }: any) => {
                   let href: null | string = null
                   if (type === EntityType.collection) {
                     href = formatAdminURL({
@@ -124,6 +156,11 @@ export const NavClient = ({ animations = true, groups, groupsConfig, itemsConfig
                       adminRoute,
                       path: `/globals/${slug}`,
                     })
+                  } else if (type === 'custom') {
+                    href =
+                      path.startsWith('/') && !path.startsWith(adminRoute)
+                        ? `${adminRoute}${path}`
+                        : path
                   }
                   const ItemIcon = getNavIcon(slug, itemsConfig)
 

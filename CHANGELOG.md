@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+- `navLinks` configuration array to support custom navigation groups and custom links, enabling sidebar links to custom Admin UI views or external sites.
+
+## [1.1.4] - 2026-06-15
+
+### Fixed
+- Fixed issue with group name lookup in navigation component.
+
 ## [1.1.3] - 2026-06-07
 
 ### Fixed
